@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from './components/Header';
 import styled from 'styled-components';
 import SideBar from './components/SideBar';
+import Chat from './components/Chat';
 
 import './App.css';
 
@@ -12,9 +13,10 @@ function App() {
       <Header/>
       <AppBody>
         <SideBar/>
+        <Chat/>
       <Routes>
-        <Route path="/"  />
-        {/* <Route path="/room/:channelId" element={} /> */}
+        <Route path="/"   />
+        
       </Routes>
       </AppBody>
     </div>

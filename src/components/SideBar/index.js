@@ -13,10 +13,14 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { useCollection } from "react-firebase-hooks/firestore";
+import { db } from "../../firebase";
 
 
 
 function SideBar() {
+    const [channels, loading, error] = useCollection(db.collection("rooms"));
+
   return (
     <SideBarContainer>
       <SideBarHeader>
@@ -41,7 +45,10 @@ function SideBar() {
         <SideBarOption Icon={ExpandMoreIcon} title="Canaux" />
         <hr />
         <SideBarOption Icon={AddOutlinedIcon} addChannelOption title='Créer un canal' />
+        {channels?.docs.map(doc => (
+            <SideBarOption  key={doc.id} id={doc.id} title={doc.data().name} />
 
+        ))}
 
         
 
