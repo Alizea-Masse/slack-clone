@@ -15,11 +15,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
 
 
 
 function SideBar() {
     const [channels, loading, error] = useCollection(db.collection("rooms"));
+    const [user] = useAuthState(auth);
 
   return (
     <SideBarContainer>
@@ -28,7 +31,7 @@ function SideBar() {
           <h2>Slack Clone</h2>
           <h3>
             <FiberManualRecordIcon />
-            Alizéa Massé
+            {user?.displayName}
           </h3>
         </SideBarInfo>
         <CreateIcon />
